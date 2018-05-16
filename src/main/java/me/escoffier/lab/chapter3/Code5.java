@@ -17,6 +17,8 @@ public class Code5 {
 
         client().get("/heroes").rxSend()
             .map(HttpResponse::bodyAsJsonObject)
+            .filter(v -> contains(name1, v))
+            .subscribe(v -> System.out.println("find s: " + v))
             // Use the filter operator and contains to check if the is a hero named `name1`
 
             // Don't forget to subscribe
@@ -25,6 +27,12 @@ public class Code5 {
 
         client().get("/heroes").rxSend()
             .map(HttpResponse::bodyAsJsonObject)
+            .filter(v -> contains(name2, v))
+            .subscribe(
+                    v -> System.out.println("find s: " + v),
+                    e -> System.err.println("error: " + e),
+                    () -> System.out.println("end of stream")
+            )
             // Use the filter operator and contains to check if the is a hero named `name2`
 
             // Don't forget to subscribe

@@ -47,12 +47,16 @@ public class AbstractSuperAPI implements SuperAPI {
 
     @Override
     public Maybe<Character> findByName(String name) {
-        return Maybe.empty();
+        return load()
+                .filter(v -> v.getName().equalsIgnoreCase(name))
+                .firstElement();
 
     }
 
     @Override
     public Single<Character> findByNameOrError(String name) {
-        return Single.error(new Exception("Not found"));
+        return load()
+                .filter(v -> v.getName().equalsIgnoreCase(name))
+                .firstOrError();
     }
 }

@@ -17,9 +17,20 @@ public class Code1 {
     );
 
     public static void main(String... args) {
-        Observable.fromIterable(SUPER_HEROES)
+        /*Observable.fromIterable(SUPER_HEROES)
             // Use doOnNext and doOnComplete to print messages
             // on each item and when the stream complete
-            .subscribe();
+
+                // First Solution
+            .doOnNext(s -> System.out.println("onNext + " + s))
+            .doOnComplete(() -> System.out.println("complete !"))
+            .subscribe();*/
+
+        Observable.fromIterable(SUPER_HEROES)
+                .subscribe(
+                        s -> System.out.println("onNext + " + s),
+                        x -> {},
+                        () -> System.out.println("complete !")
+                );
     }
 }

@@ -1,6 +1,7 @@
 package me.escoffier.lab.chapter6;
 
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import io.vertx.core.json.JsonObject;
 import me.escoffier.superheroes.SuperHeroesService;
 
@@ -47,6 +48,7 @@ public class Code7 {
 
         log("---------------- Subscribing");
         observable
+            .subscribeOn(Schedulers.io())
             .subscribe(
                 item -> {
                     log("Received " + item);

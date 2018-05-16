@@ -18,6 +18,7 @@ public class Code6 {
                     subscriber.onComplete();
                 } else if (input.contains("error")) {
                     subscriber.onError(new Exception(input));
+                    return;
                 } else {
                     subscriber.onNext(input);
                 }

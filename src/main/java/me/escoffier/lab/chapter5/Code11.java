@@ -23,7 +23,17 @@ public class Code11 {
 	private static Observable<String> getHeroesNames() {
 		return Observable.<Path>create(emitter -> {
 			DirectoryStream<Path> stream;
-			// Emit the directory stream here.
+            try {
+                stream = Files.newDirectoryStream(DIRECTORY);
+            } catch (IOException e) {
+                emitter.onError(e);
+                return;
+            }
+
+            stream.forEach(emitter::onNext);
+            stream.close();
+            emitter.onComplete();
+
 		}).map(path -> path.toFile().getName());
 	}
 

@@ -1,12 +1,12 @@
 package me.escoffier.lab.chapter5;
 
+import io.reactivex.Observable;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import io.reactivex.Observable;
 
 public class Code9 {
 
@@ -25,6 +25,7 @@ public class Code9 {
 		}
 		return Observable.fromIterable(stream)
 			.map(path -> path.toFile().getName())
+            .doFinally(stream::close)
             // ...
         ;
 	}

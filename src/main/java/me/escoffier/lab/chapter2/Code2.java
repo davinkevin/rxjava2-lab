@@ -26,6 +26,10 @@ public class Code2 {
             })
             // Use doOnNext, doOnComplete and doOnError to print messages
             // on each item, when the stream complete, and when an error occurs
-            .subscribe();
+            .subscribe(
+                    s -> System.out.println("onNext + " + s),
+                    e -> System.out.println("Error ; " + e),
+                    () -> System.out.println("complete !")
+            );
     }
 }

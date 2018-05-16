@@ -17,8 +17,17 @@ public class Code19 {
         return Single.create(emitter ->
             new Thread(() -> {
                 System.out.println("Operation starting");
-                // Do the blocking operation
-                // and emit
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                emitter.onSuccess(new Character("Frog-Man",
+                        Arrays.asList("super strength", "leaping", "mega agility", "French"),
+                        false));
+
             }).start()
         );
     }

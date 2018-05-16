@@ -8,7 +8,6 @@ public class Code1 {
 
     public static void main(String[] args) {
         Single.just("Superman")
-            .doOnSuccess(s -> System.out.println("Hello " + s))
-            .subscribe();
+            .subscribe(s -> System.out.println("Hello " + s));
     }
 }

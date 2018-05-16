@@ -6,13 +6,14 @@ import io.reactivex.Observable;
 public class Code4 {
 
     public static void main(String... args) {
-        Observable<String> stream = Observable.create(subscriber -> {
+        Observable<String> stream = Observable.create(s -> {
             // Emit items
-            subscriber.onNext("Black Canary");
-            subscriber.onNext("Catwoman");
-            subscriber.onNext("Elektra");
+            s.onNext("Black Canary");
+            s.onNext("Catwoman");
+            s.onError(new RuntimeException("A wonderful and unexpected error..."));
+            s.onNext("Elektra");
             // Notify the completion
-            subscriber.onComplete();
+            s.onComplete();
         });
 
         stream

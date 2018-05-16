@@ -17,14 +17,13 @@ public class Code4 extends AbstractSuperAPI {
 
     @Override
     public Flowable<Character> heroes() {
-        return load()
-            // Select only heroes
+        return load().filter(v -> !v.isVillain())
         ;
     }
 
     @Override
     public Flowable<Character> villains() {
-        return load()
+        return load().filter(Character::isVillain)
             // Select only villains
         ;
     }

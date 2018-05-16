@@ -10,7 +10,7 @@ public class Code8 {
             .map(Item::new)
             .subscribe(
                 item -> {
-                    nap();
+                    //nap();
                     System.out.println("Received : " + item.i);
                 }
             );
